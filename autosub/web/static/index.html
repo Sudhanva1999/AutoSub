@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoSub</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AutoSub</h1>
+    <span class="pill" id="engine"><span class="dot"></span><span>Starting…</span></span>
+    <span class="spacer"></span>
+  </header>
+
+  <div class="banner" id="tools-banner" hidden></div>
+  <section class="card">
+    <h2>Add to queue</h2>
+    <div class="form-grid">
+      <div>
+        <label class="field" for="in-path">Input folder</label>
+        <div class="row">
+          <input type="text" id="in-path" class="grow" placeholder="Folder with episodes, or a show folder with season subfolders">
+          <button id="in-browse">Browse…</button>
+        </div>
+        <div id="scan" class="scan hint">Choose a season folder (the episodes) or a whole show (its season subfolders get queued separately).</div>
+      </div>
+
+      <div id="name-wrap">
+        <label class="field" for="name">Name</label>
+        <input type="text" id="name" placeholder="e.g. Attack on Titan – Season 3">
+      </div>
+
+      <div>
+        <label class="field" for="out-path">Output folder</label>
+        <div class="row">
+          <input type="text" id="out-path" class="grow">
+          <button id="out-browse">Browse…</button>
+        </div>
+        <div class="preview" id="out-preview"></div>
+      </div>
+
+      <div class="checks">
+        <label><input type="checkbox" id="sidecar">
+          <span>Also save each <b>.srt</b> next to its video<br><span class="hint">Use this when the input folder is your Plex library: Plex finds the subtitles without any copying.</span></span></label>
+        <label><input type="checkbox" id="force">
+          <span>Redo episodes that already have subtitles</span></label>
+      </div>
+
+      <div class="actions-bar">
+        <span class="error-text" id="add-error"></span>
+        <button class="primary" id="add-btn" disabled>Add to queue</button>
+      </div>
+    </div>
+  </section>
+  <section class="card">
+    <div class="row" style="margin-bottom: 14px">
+      <h2 style="margin: 0">Queue</h2>
+      <span class="spacer grow"></span>
+      <button class="small ghost" id="clear-btn">Clear finished</button>
+    </div>
+    <div class="overall" id="overall"></div>
+    <div class="bar" id="overall-bar"></div>
+    <div id="jobs"></div>
+  </section>
+</div>
+<dialog id="picker">
+  <div class="dlg-head">
+    <button class="small" id="pk-up" title="Parent folder">↑ Up</button>
+    <input type="text" id="pk-path" class="grow" spellcheck="false">
+    <button class="small" id="pk-go">Go</button>
+  </div>
+  <div class="roots" id="pk-roots"></div>
+  <div class="dirlist" id="pk-list"></div>
+  <div class="newfolder">
+    <input type="text" id="pk-newname" class="grow" placeholder="New folder name">
+    <button class="small" id="pk-create">Create folder</button>
+  </div>
+  <div class="dlg-foot">
+    <span class="hint" id="pk-info"></span>
+    <span class="error-text" id="pk-error"></span>
+    <div class="row">
+      <button id="pk-cancel">Cancel</button>
+      <button class="primary" id="pk-choose">Use this folder</button>
+    </div>
+  </div>
+</dialog>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

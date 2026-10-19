@@ -1,0 +1,163 @@
+:root {
+  --bg: #f6f6f4;
+  --surface: #ffffff;
+  --surface-2: #f0f0ed;
+  --border: #e2e2dd;
+  --text: #1d1d1b;
+  --muted: #6b6b66;
+  --accent: #2f6fd6;
+  --accent-text: #ffffff;
+  --accent-soft: #e6eefb;
+  --ok: #1f8a4c;
+  --ok-soft: #e3f4ea;
+  --warn: #b26a00;
+  --warn-soft: #fbf0dc;
+  --bad: #c23b32;
+  --bad-soft: #fbe5e3;
+  --track: #e7e7e2;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151514;
+    --surface: #1e1e1c;
+    --surface-2: #262624;
+    --border: #33332f;
+    --text: #ececea;
+    --muted: #9a9a94;
+    --accent: #5b93ec;
+    --accent-text: #0d1320;
+    --accent-soft: #1d2a40;
+    --ok: #4cc27f;
+    --ok-soft: #173225;
+    --warn: #e4a23c;
+    --warn-soft: #36290f;
+    --bad: #ef6b61;
+    --bad-soft: #3b1c1a;
+    --track: #2f2f2c;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: 15px; margin: 0 0 14px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
+  background: var(--surface-2); color: var(--muted); font-size: 12px; white-space: nowrap;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.spacer { flex: 1; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px; box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.banner { border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; background: var(--bad-soft); color: var(--bad); }
+label.field { display: block; font-weight: 600; font-size: 13px; margin: 0 0 6px; }
+.hint { color: var(--muted); font-size: 12.5px; }
+.row { display: flex; gap: 8px; align-items: center; }
+.grow { flex: 1; min-width: 0; }
+.form-grid { display: grid; gap: 16px; }
+input[type=text] {
+  width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font: inherit;
+}
+input[type=text]:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+button {
+  font: inherit; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+  color: var(--text); padding: 7px 12px; cursor: pointer; white-space: nowrap;
+}
+button:hover { background: var(--surface-2); }
+button:disabled { opacity: .45; cursor: default; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+button.primary:hover { filter: brightness(1.05); }
+button.small { padding: 4px 9px; font-size: 12.5px; }
+button.ghost { border-color: transparent; background: transparent; color: var(--muted); }
+button.ghost:hover { background: var(--surface-2); color: var(--text); }
+.checks { display: flex; flex-direction: column; gap: 8px; }
+.checks label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+.checks input { margin-top: 3px; }
+.scan { margin-top: 8px; font-size: 13px; }
+.seasons { margin-top: 8px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seasons label {
+  display: flex; gap: 10px; align-items: center; padding: 7px 10px; cursor: pointer;
+  border-top: 1px solid var(--border);
+}
+.seasons label:first-child { border-top: 0; }
+.seasons .count { color: var(--muted); margin-left: auto; font-size: 12.5px; }
+.preview { margin-top: 6px; font-size: 12.5px; color: var(--muted); word-break: break-all; }
+.actions-bar { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
+.error-text { color: var(--bad); font-size: 13px; }
+
+/* overall */
+.overall { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.stat .v { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stat .k { color: var(--muted); font-size: 12px; }
+
+.bar { height: 8px; border-radius: 999px; background: var(--track); overflow: hidden; display: flex; }
+.bar > span { display: block; height: 100%; transition: width .4s ease; }
+.bar .b-done { background: var(--ok); }
+.bar .b-fail { background: var(--bad); }
+.bar .b-run { background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .45; } }
+
+/* jobs */
+.job { border: 1px solid var(--border); border-radius: 10px; margin-top: 12px; background: var(--surface); }
+.job-head { padding: 14px; display: grid; gap: 10px; }
+.job-title { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.job-title strong { font-size: 15px; }
+.paths { font-size: 12.5px; color: var(--muted); display: grid; gap: 2px; word-break: break-all; }
+.paths b { font-weight: 600; color: var(--text); }
+.job-meta { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+.job-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: .03em; }
+.s-queued { background: var(--surface-2); color: var(--muted); }
+.s-running { background: var(--accent-soft); color: var(--accent); }
+.s-done { background: var(--ok-soft); color: var(--ok); }
+.s-failed { background: var(--bad-soft); color: var(--bad); }
+.s-stopped { background: var(--warn-soft); color: var(--warn); }
+
+.episodes { border-top: 1px solid var(--border); }
+.ep { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; padding: 7px 14px; align-items: center; font-size: 13px; }
+.ep + .ep { border-top: 1px solid var(--border); }
+.ep .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ep .err { grid-column: 2 / 4; color: var(--bad); font-size: 12px; margin-top: -4px; word-break: break-word; }
+.ep .t { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ep.running { background: var(--accent-soft); }
+.icon { width: 18px; height: 18px; display: grid; place-items: center; font-size: 12px; border-radius: 50%; }
+.i-pending { border: 1.5px solid var(--border); }
+.i-running { border: 2px solid var(--accent); border-top-color: transparent; animation: spin .9s linear infinite; }
+.i-done { background: var(--ok); color: var(--surface); }
+.i-skipped { background: var(--surface-2); color: var(--muted); }
+.i-failed { background: var(--bad); color: var(--surface); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty { color: var(--muted); text-align: center; padding: 28px 0 12px; }
+
+/* folder picker */
+dialog {
+  border: 1px solid var(--border); border-radius: 14px; padding: 0; width: min(640px, calc(100vw - 32px));
+  background: var(--surface); color: var(--text); box-shadow: 0 10px 40px rgba(0,0,0,.25);
+}
+dialog::backdrop { background: rgba(0,0,0,.35); }
+.dlg-head, .dlg-foot { padding: 14px 16px; display: flex; gap: 8px; align-items: center; }
+.dlg-head { border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.dlg-foot { border-top: 1px solid var(--border); justify-content: space-between; flex-wrap: wrap; }
+.roots { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 16px 0; }
+.dirlist { height: 320px; overflow-y: auto; overflow-x: hidden; margin: 10px 16px; border: 1px solid var(--border); border-radius: 8px; }
+.dirlist button {
+  display: flex; width: 100%; text-align: left; border: 0; border-radius: 0; gap: 8px;
+  border-top: 1px solid var(--border); padding: 8px 12px; background: transparent;
+}
+.dirlist button:first-child { border-top: 0; }
+.dirlist button span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dirlist button:hover { background: var(--surface-2); }
+.newfolder { display: flex; gap: 8px; padding: 0 16px 6px; }
+@media (max-width: 560px) {
+  .job-meta { flex-direction: column; }
+}
